@@ -8,7 +8,7 @@ const EmptyPlaylistCard = styled(Card)(({theme}) => ({
 
 const CreatePlaylistButton = styled(Button)({
     marginTop: "20px",
-    fontweight:"700",
+    fontWeight: 700,
 })
 
 const EmptyPlaylist = () => {
@@ -19,7 +19,7 @@ const EmptyPlaylist = () => {
             </Typography>
             <Typography variant="body2">It's easy, we'll help you</Typography>
             <CreatePlaylistButton variant="contained" color="secondary" >
-            Create palylist
+            Create playlist 
             </CreatePlaylistButton>
         </EmptyPlaylistCard>
   );

@@ -1,9 +1,12 @@
-
 const SpinnerLoader = () => {
   return (
-    <div role="status" className="flex justify-center items-center">
+    <div
+      role="status"
+      className="flex flex-col justify-center items-center min-h-screen"
+    >
       <svg
-        aria-hidden="true"
+        width={32}
+        height={32}
         className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-300 fill-blue-600"
         viewBox="0 0 100 101"
         fill="none"
@@ -41,7 +44,7 @@ const SpinnerLoader = () => {
           fill="currentFill"
         />
       </svg>
-      <span className="sr-only">Loading...</span>
+        <span className="absolute bottom-[55%] text-gray-300 text-lg">Loading...</span>
     </div>
   );
 };

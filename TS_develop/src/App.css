@@ -1,7 +1,26 @@
-body {
-  background-color: black;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  height: 100%;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* SpinnerLoader.css */
+.spinner-wrapper {
+  position: fixed;
+  inset: 0; /* top/right/bottom/left 0 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  z-index: 9999;
+}
+.spinner {
+  width: 32px;
+  height: 32px;
+  fill: #2563eb;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

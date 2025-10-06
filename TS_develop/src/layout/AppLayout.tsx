@@ -3,8 +3,10 @@ import HomeIcon from "@mui/icons-material/Home";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { NavLink, Outlet } from "react-router-dom";
-import Library from "../common/components/Library";
+
 import LibraryHead from "./components/LibraryHead";
+import Navbar from "./components/Navbar";
+import { Library } from "./components/Library";
 
 const Layout = styled("div")({
   display: "flex", // 양옆 배치
@@ -45,7 +47,7 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
   alignItems: "center",
   gap: "20px",
   color: theme.palette.text.secondary,
-  "&.hover": {
+  "&:hover": {
     color: theme.palette.text.primary,
   },
   "&.active": {
@@ -78,9 +80,12 @@ const AppLayout = () => {
           <LibraryHead />
           <Library />
         </ContentBox>
-
-        <Outlet />
       </Sidebar>
+
+      <ContentBox>
+        <Navbar />
+        <Outlet />
+      </ContentBox>
     </Layout>
   );
 };
