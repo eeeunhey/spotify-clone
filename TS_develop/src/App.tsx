@@ -1,9 +1,16 @@
 
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import AppLayout from "./layout/AppLayout";
-import HomePage from "./pages/HomePage/HomePage";
-import SearchPage from "./pages/SearchPage/SearchPage";
+import React, { Suspense } from "react";
+import SpinnerLoader from "./common/components/Loader/SpinnerLoader";
+
+const AppLayout = React.lazy(()=>import('./layout/AppLayout'));
+const HomePage = React.lazy(()=>import("./pages/HomePage/HomePage"));
+const SearchPage = React.lazy(()=>import("./pages/SearchPage/SearchPage"));
+const SearchWithPage = React.lazy(()=>import("./pages/SearchWithPage/SearchWithPage"));
+const PlaylistDetailPage  = React.lazy(()=>import("./pages/PlaylistDetailPage/PlaylistDetailPage"));
+const LibraryPage  = React.lazy(()=>import("./pages/LibraryPage/LibraryPage"));
+
 
 function App() {
   // 1. 홈페이지  / 사이드 바 유지
@@ -16,18 +23,20 @@ function App() {
   // 6. 모바일버전 플레이리스트 보여주는 페이지  /playlist
 
   return (
+    <Suspense fallback={<SpinnerLoader />}>
     <Routes>
       <Route path="/" element={<AppLayout />}>
         <Route index element={<HomePage />} />
         <Route path="search" element={<SearchPage />} />
-        {/* <Route path="search/:keyword" element={<SearchWithKeywordPage />} />
+        <Route path="search/:keyword" element={<SearchWithPage />} />
         <Route path="palylist/:id" element={<PlaylistDetailPage />} />  
-        {/* <Route path="/playlist" element={<LibraryPage />}/> */}
-    
+        { <Route path="/playlist" element={<LibraryPage />}/>}
+  
       </Route>
       {/* <Route path="/admin" element={<AdminPage/>}/> */}
       {/* 레이아웃별로 라우트를 묶을 수 있다 */}
     </Routes>
+    </Suspense>
   );
 }
 
