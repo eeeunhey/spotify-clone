@@ -15,11 +15,11 @@ const EmptyPlaylist = () => {
     return (
         <EmptyPlaylistCard>
             <Typography variant="h2" fontWeight={700}>
-                Create your first playlist
+                첫 번째 플레이리스트를 만들어보세요
             </Typography>
-            <Typography variant="body2">It's easy, we'll help you</Typography>
+            <Typography variant="body2">간단해요! 저희가 도와드릴게요.</Typography>
             <CreatePlaylistButton variant="contained" color="secondary" >
-            Create playlist 
+            플레이리스트 만들기
             </CreatePlaylistButton>
         </EmptyPlaylistCard>
   );

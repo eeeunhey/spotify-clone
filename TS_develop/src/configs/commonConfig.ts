@@ -1,0 +1,1 @@
+export const SPOTIFY_BASE_URL = import.meta.env.SPOTIFY_BASE_URL

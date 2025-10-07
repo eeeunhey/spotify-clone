@@ -57,7 +57,8 @@
 
     //main.ts가 생성된다
     "sourceMap": true
-  }
+  },
+  
 }
 
 
