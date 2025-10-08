@@ -1,7 +1,7 @@
 import './index.css'
 import { Route, Routes } from "react-router-dom";
 import React, { Suspense } from "react";
-import SpinnerLoader from "./common/components/Loader/SpinnerLoader";
+import LodingSpinner from './common/components/Loader/LodingSpinner';
 
 const AppLayout = React.lazy(() => import("./layout/AppLayout"));
 const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
@@ -25,7 +25,7 @@ function App() {
   // 6. 모바일버전 플레이리스트 보여주는 페이지  /playlist
 
   return (
-    <Suspense fallback={<SpinnerLoader />}>
+    <Suspense fallback={<LodingSpinner />}>
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<HomePage />} />

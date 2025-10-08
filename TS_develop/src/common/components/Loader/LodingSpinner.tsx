@@ -1,4 +1,4 @@
-const SpinnerLoader = () => {
+const LodingSpinner = () => {
   return (
     <div
       role="status"
@@ -49,4 +49,4 @@ const SpinnerLoader = () => {
   );
 };
 
-export default SpinnerLoader;
+export default LodingSpinner;
