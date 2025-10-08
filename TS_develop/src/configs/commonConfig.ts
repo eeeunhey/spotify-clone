@@ -1,1 +1,1 @@
-export const SPOTIFY_BASE_URL = import.meta.env.SPOTIFY_BASE_URL
+export const SPOTIFY_BASE_URL = "https://api.spotify.com/v1";

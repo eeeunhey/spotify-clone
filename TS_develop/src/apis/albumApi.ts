@@ -11,6 +11,7 @@ export const getNewReleases = async(clientCredentialToken:string): Promise<getNe
                 },
             }
         );
+
         return response.data
     } catch(error) {
         throw new Error("fail to fetch new releases");
