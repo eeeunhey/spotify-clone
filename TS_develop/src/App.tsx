@@ -2,6 +2,7 @@ import './index.css'
 import { Route, Routes } from "react-router-dom";
 import React, { Suspense } from "react";
 import LodingSpinner from './common/components/Loader/LodingSpinner';
+import Callback from './pages/Callback/Callback';
 
 const AppLayout = React.lazy(() => import("./layout/AppLayout"));
 const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
@@ -29,6 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="/callback" element={<Callback />} />
           <Route path="search" element={<SearchPage />} />
           <Route path="search/:keyword" element={<SearchWithPage />} />
           <Route path="playlist/:id" element={<PlaylistDetailPage />} />

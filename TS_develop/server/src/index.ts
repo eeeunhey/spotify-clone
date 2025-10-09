@@ -27,7 +27,7 @@ app.post("/api/spotify/login-url", (req, res) => {
   const clientId = process.env.SPOTIFY_CLIENT_ID!;
   const redirectUri = process.env.REDIRECT_URI!;
   const scope = "user-read-private user-read-email";
-  console.log(redirectUri)
+  console.log("redirectUri",redirectUri)
 
   if (!code_challenge)
     return res.status(400).json({ error: "Missing code_challenge" });
