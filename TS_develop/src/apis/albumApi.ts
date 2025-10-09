@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SPOTIFY_BASE_URL } from "../configs/commonConfig";
+import { SPOTIFY_BASE_URL } from "../../server/configs/commonConfig";
 import type { getNewReleasesResponse } from "../../models/album";
 
 export const getNewReleases = async(clientCredentialToken:string): Promise<getNewReleasesResponse> => {

@@ -1,12 +1,7 @@
-import "dotenv/config";
-import express from "express";
-import cors from "cors";
-
-// server/src/index.ts
 import dotenv from "dotenv";
 import path from "node:path";
-
-// server/.env 를 확실히 지정
+import express from "express";
+import cors from "cors";
 dotenv.config({ path: path.join(process.cwd(), ".env") });
 
 const app = express();
@@ -22,7 +17,38 @@ app.use((req, _res, next) => {
   next();
 });
 
+function errorMessage(e: unknown): string {
+  if (e instanceof Error) return e.message;
+  try { return JSON.stringify(e); } catch { return String(e); }
+}
+
+app.post("/api/spotify/login-url", (req, res) => {
+  const { code_challenge } = req.body;
+  const clientId = process.env.SPOTIFY_CLIENT_ID!;
+  const redirectUri = process.env.REDIRECT_URI!;
+  const scope = "user-read-private user-read-email";
+  console.log(redirectUri)
+
+  if (!code_challenge)
+    return res.status(400).json({ error: "Missing code_challenge" });
+
+  const params = new URLSearchParams({
+    response_type: "code",
+    client_id: clientId,
+    redirect_uri: redirectUri,
+    scope,
+    code_challenge_method: "S256",
+    code_challenge,
+  });
+
+  const url = `https://accounts.spotify.com/authorize?${params.toString()}`;
+  console.log("[login-url][url]", url);
+
+  return res.json({ url }); // ✅ 한 번만 응답
+});
+
 app.post("/api/spotify/token", async (_req, res) => {
+
   try {
     const id = process.env.SPOTIFY_CLIENT_ID;
     const secret = process.env.SPOTIFY_SECRET_ID;
@@ -51,15 +77,16 @@ app.post("/api/spotify/token", async (_req, res) => {
 
     if (!r.ok) return res.status(r.status).type("application/json").send(text);
     return res.type("application/json").send(text);
-  } catch (e: any) {
+  } catch (e: unknown) {
     console.error("[server][error]", e);
-    return res.status(500).json({ error: e?.message ?? "Internal Server Error" });
+    return res.status(500).json({ error: errorMessage(e) });
   }
 });
 
 // 🔎 404 로거
 app.use((req, res) => {
   console.log("[404]", req.method, req.url);
+
   res.status(404).send("Not Found");
 });
 

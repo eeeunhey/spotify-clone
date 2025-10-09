@@ -1,4 +1,6 @@
 import { Button, styled } from '@mui/material'
+import { getSpotifyAuthUrl } from '../../uitls/auth'
+
 
 const CustomButton = styled(Button)(({ theme }) => ({
     borderColor: theme.palette.secondary.main,
@@ -12,8 +14,13 @@ const CustomButton = styled(Button)(({ theme }) => ({
 }))
 
 const LoginButton = () => {
+  const login=() =>{
+    //로그인 함수를 만들자
+    getSpotifyAuthUrl()
+  }
   return (
-    <CustomButton  color="secondary" size="large">Login</CustomButton>
+    <CustomButton  color="secondary" size="large" onClick={login}>
+      Login</CustomButton>
   )
 }
 
